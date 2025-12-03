@@ -20,25 +20,22 @@ def part1():
         print(res)
 
 def part2():
-    #with open("2025/inputday3.txt") as input:
-    with open("2025/ex.txt") as input:
+    with open("2025/inputday3.txt") as input:
         res = 0
         for line in input:
             line = str(line.strip())
             big,index, biggest = 0,0,""
             while len(biggest) < 12:
-                index += 1
-                if int(i) > int(big):
-                    big = i
-                    indexbig = index
+                for i in line:
+                    index += 1
+                    if int(i) > int(big) and index < (len(line) - (10 - len(biggest))):
+                        big = i
+                        indexbig = index
+                biggest += str(big)
+                big,index = 0,0
+                line = line[indexbig:]
 
-            ndbig = 0
-            for i in line[indexbig:]:
-                if int(i) > int(ndbig):
-                    ndbig = i
-            bigcomb = big + ndbig
-
-            res += int(bigcomb)
+            res += int(biggest)
         print(res)
 
 
