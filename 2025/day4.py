@@ -19,21 +19,35 @@ def check(grid, y, x):
 
 def part1():
     with open("2025/inputday4.txt") as input:
-        res = 0
         grid = [list(line.strip()) for line in input]
-        for y in range(len(grid)):
-            for x in range(len(grid[0])):
-                    if grid[y][x] == "@":
-                        if check(grid, y, x) < 4:
-                            res += 1
-                        #line = line[:index] + "." + line[index + 1:]
+    res = 0
+    for y in range(len(grid)):
+        for x in range(len(grid[0])):
+            if grid[y][x] == "@":
+                if check(grid, y, x) < 4:
+                    res += 1
     print(res)
 
 def part2():
-    with open("2025/ex.txt") as input:
+    with open("2025/inputday4.txt") as input:
+
         grid = [list(line.strip()) for line in input]
-        print(grid[1][0])
-    return
+    res = 0
+
+    while True:
+        removed = False
+
+        for y in range(len(grid)):
+            for x in range(len(grid[0])):
+                if grid[y][x] == "@":
+                    if check(grid, y, x) < 4:
+                        res += 1
+                        grid[y][x] = "."
+                        removed = True
+        if not removed:
+            break
+
+    print(res)
 
 if __name__ == "__main__":
     part1()
